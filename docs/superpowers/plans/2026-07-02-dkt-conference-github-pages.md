@@ -182,17 +182,20 @@ Expected: `9`
 - [ ] **Step 3: Create `assets/fonts.css` with @font-face rules**
 
 Create `assets/fonts.css`:
+NOTE: `url()` in CSS resolves relative to the CSS FILE, not the HTML. Since
+`fonts.css` lives in `assets/`, the paths are `fonts/...` (NOT `assets/fonts/...`,
+which would 404 as `assets/assets/fonts/...`).
 ```css
-/* Self-hosted DKT fonts — replaces Google Fonts CDN. Paths relative to /index.html. */
-@font-face { font-family: 'Hanken Grotesk'; font-style: normal; font-weight: 400; font-display: swap; src: url('assets/fonts/hanken-grotesk-latin-400-normal.woff2') format('woff2'); }
-@font-face { font-family: 'Hanken Grotesk'; font-style: normal; font-weight: 500; font-display: swap; src: url('assets/fonts/hanken-grotesk-latin-500-normal.woff2') format('woff2'); }
-@font-face { font-family: 'Hanken Grotesk'; font-style: normal; font-weight: 600; font-display: swap; src: url('assets/fonts/hanken-grotesk-latin-600-normal.woff2') format('woff2'); }
-@font-face { font-family: 'Hanken Grotesk'; font-style: normal; font-weight: 700; font-display: swap; src: url('assets/fonts/hanken-grotesk-latin-700-normal.woff2') format('woff2'); }
-@font-face { font-family: 'Hanken Grotesk'; font-style: normal; font-weight: 800; font-display: swap; src: url('assets/fonts/hanken-grotesk-latin-800-normal.woff2') format('woff2'); }
-@font-face { font-family: 'Hanken Grotesk'; font-style: normal; font-weight: 900; font-display: swap; src: url('assets/fonts/hanken-grotesk-latin-900-normal.woff2') format('woff2'); }
-@font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url('assets/fonts/jetbrains-mono-latin-400-normal.woff2') format('woff2'); }
-@font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 500; font-display: swap; src: url('assets/fonts/jetbrains-mono-latin-500-normal.woff2') format('woff2'); }
-@font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 700; font-display: swap; src: url('assets/fonts/jetbrains-mono-latin-700-normal.woff2') format('woff2'); }
+/* Self-hosted DKT fonts — replaces Google Fonts CDN. Paths relative to THIS file (assets/). */
+@font-face { font-family: 'Hanken Grotesk'; font-style: normal; font-weight: 400; font-display: swap; src: url('fonts/hanken-grotesk-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Hanken Grotesk'; font-style: normal; font-weight: 500; font-display: swap; src: url('fonts/hanken-grotesk-latin-500-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Hanken Grotesk'; font-style: normal; font-weight: 600; font-display: swap; src: url('fonts/hanken-grotesk-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Hanken Grotesk'; font-style: normal; font-weight: 700; font-display: swap; src: url('fonts/hanken-grotesk-latin-700-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Hanken Grotesk'; font-style: normal; font-weight: 800; font-display: swap; src: url('fonts/hanken-grotesk-latin-800-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Hanken Grotesk'; font-style: normal; font-weight: 900; font-display: swap; src: url('fonts/hanken-grotesk-latin-900-normal.woff2') format('woff2'); }
+@font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url('fonts/jetbrains-mono-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 500; font-display: swap; src: url('fonts/jetbrains-mono-latin-500-normal.woff2') format('woff2'); }
+@font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 700; font-display: swap; src: url('fonts/jetbrains-mono-latin-700-normal.woff2') format('woff2'); }
 ```
 
 - [ ] **Step 4: Replace the Google Fonts links in index.html head**
