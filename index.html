@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="image-slot.js"></script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { margin: 0; }
+  @keyframes dktFloat { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-16px) } }
+  @keyframes dktFloatLogo { 0%,100% { transform: translateY(0) rotate(-1deg) } 50% { transform: translateY(-14px) rotate(1deg) } }
+  @keyframes dktShimmer { 0% { background-position: -380px 0 } 100% { background-position: 380px 0 } }
+  @keyframes dktPulse { 0%,100% { opacity: .55 } 50% { opacity: 1 } }
+</style>
+</helmet>
+<div style="background: radial-gradient(1100px 620px at 50% -8%, #146a93 0%, rgba(11,84,125,0) 58%), radial-gradient(900px 500px at 90% 12%, color-mix(in srgb, var(--accent, #43E1FD) 12%, transparent) 0%, transparent 55%), linear-gradient(180deg, #0B547D 0%, #073a54 45%, #062f44 100%); background-color: #073a54; min-height: 100vh; color: #EAF6FF; font-family: 'Hanken Grotesk', system-ui, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden;" ref="{{ setRoot }}">
+
+  <!-- ============ HEADER ============ -->
+  <header style="position: sticky; top: 0; z-index: 50; backdrop-filter: blur(14px); background: rgba(7,48,71,0.72); border-bottom: 1px solid color-mix(in srgb, var(--accent, #43E1FD) 14%, transparent);">
+    <div style="max-width: 1180px; margin: 0 auto; padding: 12px 32px; display: flex; align-items: center; justify-content: space-between; gap: 20px;">
+      <a href="#top" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit;">
+        <img src="assets/dkt-logo.png" alt="DevOps Kitchen Talks" style="width: 42px; height: 42px; object-fit: contain;">
+        <span style="font-weight: 800; font-size: 18px; letter-spacing: -0.01em;">DKT Conference</span>
+      </a>
+      <nav style="display: flex; align-items: center; gap: 26px;">
+        <a href="#speakers" style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #B9D9EC; text-decoration: none; transition: color .15s;" style-hover="color: var(--accent-soft, #43E1FD);">спикеры</a>
+        <a href="#program" style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #B9D9EC; text-decoration: none; transition: color .15s;" style-hover="color: var(--accent-soft, #43E1FD);">программа</a>
+        <a href="#partners" style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #B9D9EC; text-decoration: none; transition: color .15s;" style-hover="color: var(--accent-soft, #43E1FD);">партнёры</a>
+        <a href="https://forms.gle/2kvctgF9cTDHXeMw9" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px; background: #FEEB35; color: #08304a; font-weight: 800; font-size: 14px; padding: 10px 20px; border-radius: 999px; text-decoration: none; transition: filter .15s, transform .15s;" style-hover="filter: brightness(1.06); transform: translateY(-1px);">Зарегистрироваться</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section id="top" style="position: relative;">
+    <a id="register" style="position: absolute; top: -90px;"></a>
+
+    <!-- decorative playful background -->
+    <sc-if value="{{ playfulBg }}" hint-placeholder-val="{{ true }}">
+      <div style="position: absolute; inset: 0; overflow: hidden; pointer-events: none;">
+        <div style="position: absolute; top: 14%; left: 8%; width: 14px; height: 14px; border-radius: 50%; background: var(--accent, #43E1FD); animation: dktFloat 6s ease-in-out infinite;"></div>
+        <div style="position: absolute; top: 26%; right: 12%; width: 10px; height: 10px; border-radius: 50%; background: #FEEB35; animation: dktFloat 7s ease-in-out infinite .8s;"></div>
+        <div style="position: absolute; top: 64%; left: 14%; width: 12px; height: 12px; border-radius: 50%; background: #E85872; animation: dktFloat 5.5s ease-in-out infinite .4s;"></div>
+        <div style="position: absolute; top: 72%; right: 18%; width: 16px; height: 16px; border: 3px solid color-mix(in srgb, var(--accent, #43E1FD) 50%, transparent); border-radius: 50%; animation: dktFloat 8s ease-in-out infinite 1.2s;"></div>
+        <div style="position: absolute; top: 40%; left: 4%; color: #FED74E; font-size: 26px; animation: dktFloat 6.5s ease-in-out infinite .2s;">+</div>
+        <div style="position: absolute; top: 18%; right: 30%; color: var(--accent-soft, #43E1FD); font-size: 20px; animation: dktFloat 7.5s ease-in-out infinite 1s;">+</div>
+      </div>
+    </sc-if>
+
+    <!-- VARIANT A: centered -->
+    <sc-if value="{{ isCenter }}" hint-placeholder-val="{{ true }}">
+      <div style="position: relative; max-width: 920px; margin: 0 auto; padding: 76px 32px 88px; display: flex; flex-direction: column; align-items: center; text-align: center;">
+        <div style="width: 208px; height: 208px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 18px 50px rgba(0,0,0,0.4); animation: dktFloatLogo 8s ease-in-out infinite;">
+          <img src="assets/dkt-logo.png" alt="DevOps Kitchen Talks" style="width: 188px; height: 188px; object-fit: contain;">
+        </div>
+        <div style="margin-top: 26px; font-family: 'JetBrains Mono', monospace; font-size: 14px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-soft, #43E1FD);">DevOps Kitchen Talks</div>
+        <h1 style="margin: 14px 0 0; font-weight: 900; font-size: clamp(48px, 8vw, 92px); line-height: 0.98; letter-spacing: -0.03em;">DKT <span style="color: var(--accent, #43E1FD);">Conference</span></h1>
+        <p style="margin: 22px 0 0; max-width: 600px; font-size: 20px; line-height: 1.5; color: #BCDAEC; text-wrap: pretty;">Это не громкая корпоративная конференция, а большая встреча друзей по комьюнити. Собираемся, готовим что-то вкусное про DevOps и просто хорошо проводим время вместе.</p>
+        <div style="margin-top: 28px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;">
+          <span style="display: inline-flex; align-items: center; gap: 9px; font-family: 'JetBrains Mono', monospace; font-size: 14px; padding: 9px 16px; border-radius: 999px; background: color-mix(in srgb, var(--accent, #43E1FD) 10%, transparent); border: 1px solid color-mix(in srgb, var(--accent, #43E1FD) 30%, transparent); color: #CFEFFB;"><span style="width: 7px; height: 7px; border-radius: 50%; background: var(--accent, #43E1FD);"></span>15 августа 2026 · 13:00</span>
+          <span style="display: inline-flex; align-items: center; gap: 9px; font-family: 'JetBrains Mono', monospace; font-size: 14px; padding: 9px 16px; border-radius: 999px; background: rgba(254,235,53,0.1); border: 1px solid rgba(254,235,53,0.3); color: #FCEBA0;"><span style="width: 7px; height: 7px; border-radius: 50%; background: #FEEB35;"></span>оффлайн + онлайн</span>
+        </div>
+        <a href="https://forms.gle/2kvctgF9cTDHXeMw9" target="_blank" rel="noopener" style="margin-top: 36px; display: inline-flex; align-items: center; gap: 11px; background: #FEEB35; color: #08304a; font-weight: 800; font-size: 19px; padding: 17px 38px; border-radius: 999px; text-decoration: none; box-shadow: 0 14px 38px rgba(254,235,53,0.28); transition: transform .15s, box-shadow .25s, filter .15s; cursor: pointer;" style-hover="transform: translateY(-2px); box-shadow: 0 20px 50px rgba(254,235,53,0.42); filter: brightness(1.05);">Зарегистрироваться <span style="font-size: 22px;">→</span></a>
+      </div>
+    </sc-if>
+
+    <!-- VARIANT B: split -->
+    <sc-if value="{{ isSplit }}" hint-placeholder-val="{{ false }}">
+      <div style="position: relative; max-width: 1180px; margin: 0 auto; padding: 70px 32px 90px; display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 48px; align-items: center;">
+        <div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 14px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-soft, #43E1FD);">DevOps Kitchen Talks</div>
+          <h1 style="margin: 16px 0 0; font-weight: 900; font-size: clamp(46px, 6.4vw, 86px); line-height: 0.98; letter-spacing: -0.03em;">DKT<br><span style="color: var(--accent, #43E1FD);">Conference</span></h1>
+          <p style="margin: 24px 0 0; max-width: 520px; font-size: 20px; line-height: 1.5; color: #BCDAEC; text-wrap: pretty;">Это не громкая корпоративная конференция, а большая встреча друзей по комьюнити. Собираемся, готовим что-то вкусное про DevOps и просто хорошо проводим время вместе.</p>
+          <div style="margin-top: 28px; display: flex; flex-wrap: wrap; gap: 12px;">
+            <span style="display: inline-flex; align-items: center; gap: 9px; font-family: 'JetBrains Mono', monospace; font-size: 14px; padding: 9px 16px; border-radius: 999px; background: color-mix(in srgb, var(--accent, #43E1FD) 10%, transparent); border: 1px solid color-mix(in srgb, var(--accent, #43E1FD) 30%, transparent); color: #CFEFFB;"><span style="width: 7px; height: 7px; border-radius: 50%; background: var(--accent, #43E1FD);"></span>15 августа 2026 · 13:00</span>
+            <span style="display: inline-flex; align-items: center; gap: 9px; font-family: 'JetBrains Mono', monospace; font-size: 14px; padding: 9px 16px; border-radius: 999px; background: rgba(254,235,53,0.1); border: 1px solid rgba(254,235,53,0.3); color: #FCEBA0;"><span style="width: 7px; height: 7px; border-radius: 50%; background: #FEEB35;"></span>оффлайн + онлайн</span>
+          </div>
+          <a href="https://forms.gle/2kvctgF9cTDHXeMw9" target="_blank" rel="noopener" style="margin-top: 36px; display: inline-flex; align-items: center; gap: 11px; background: #FEEB35; color: #08304a; font-weight: 800; font-size: 19px; padding: 17px 38px; border-radius: 999px; text-decoration: none; box-shadow: 0 14px 38px rgba(254,235,53,0.28); transition: transform .15s, box-shadow .25s, filter .15s; cursor: pointer;" style-hover="transform: translateY(-2px); box-shadow: 0 20px 50px rgba(254,235,53,0.42); filter: brightness(1.05);">Зарегистрироваться <span style="font-size: 22px;">→</span></a>
+        </div>
+        <div style="position: relative; display: flex; align-items: center; justify-content: center;">
+          <div style="position: absolute; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--accent, #43E1FD) 35%, transparent) 0%, transparent 68%);"></div>
+          <div style="position: relative; width: 360px; height: 360px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 22px 60px rgba(0,0,0,0.45); animation: dktFloatLogo 8s ease-in-out infinite;">
+            <img src="assets/dkt-logo.png" alt="DevOps Kitchen Talks" style="width: 326px; height: 326px; object-fit: contain;">
+          </div>
+        </div>
+      </div>
+    </sc-if>
+  </section>
+
+  <!-- ============ COUNTDOWN ============ -->
+  <section style="padding: 30px 0 70px;">
+    <div style="max-width: 1180px; margin: 0 auto; padding: 0 32px; display: flex; flex-direction: column; align-items: center;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; color: #BCDAEC;">До встречи осталось</div>
+      <div style="margin-top: 22px; display: flex; flex-wrap: wrap; gap: 14px; justify-content: center;">
+        <div style="background: rgba(255,255,255,0.05); border: 1px solid color-mix(in srgb, var(--accent, #43E1FD) 22%, transparent); border-radius: 18px; padding: 26px 18px; min-width: 132px; text-align: center;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(40px, 6vw, 62px); line-height: 1; color: var(--accent, #43E1FD); font-variant-numeric: tabular-nums;">{{ days }}</div>
+          <div style="margin-top: 12px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #90B9D0;">дней</div>
+        </div>
+        <div style="background: rgba(255,255,255,0.05); border: 1px solid color-mix(in srgb, var(--accent, #43E1FD) 22%, transparent); border-radius: 18px; padding: 26px 18px; min-width: 132px; text-align: center;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(40px, 6vw, 62px); line-height: 1; color: var(--accent, #43E1FD); font-variant-numeric: tabular-nums;">{{ hours }}</div>
+          <div style="margin-top: 12px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #90B9D0;">часов</div>
+        </div>
+        <div style="background: rgba(255,255,255,0.05); border: 1px solid color-mix(in srgb, var(--accent, #43E1FD) 22%, transparent); border-radius: 18px; padding: 26px 18px; min-width: 132px; text-align: center;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(40px, 6vw, 62px); line-height: 1; color: var(--accent, #43E1FD); font-variant-numeric: tabular-nums;">{{ mins }}</div>
+          <div style="margin-top: 12px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #90B9D0;">минут</div>
+        </div>
+        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(254,235,53,0.28); border-radius: 18px; padding: 26px 18px; min-width: 132px; text-align: center;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(40px, 6vw, 62px); line-height: 1; color: #FEEB35; font-variant-numeric: tabular-nums;">{{ secs }}</div>
+          <div style="margin-top: 12px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #90B9D0;">секунд</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SPEAKERS ============ -->
+  <section id="speakers" style="padding: 80px 0; border-top: 1px solid rgba(255,255,255,0.06);">
+    <div style="max-width: 1180px; margin: 0 auto; padding: 0 32px;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-soft, #43E1FD); text-align: center;">Спикеры</div>
+      <h2 style="margin: 12px 0 0; font-weight: 800; font-size: clamp(32px, 4.4vw, 48px); letter-spacing: -0.02em; text-align: center;">Кто будет готовить</h2>
+      <p style="margin: 12px auto 0; max-width: 560px; font-size: 18px; line-height: 1.5; color: #BCDAEC; text-align: center;">Шефы за плитой определяются. Первых героев объявим совсем скоро — а пока место уже греется.</p>
+
+      <div style="margin-top: 40px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px;">
+        <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09); border-radius: 22px; padding: 34px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 18px; transition: border-color .25s, box-shadow .25s, transform .25s;" style-hover="border-color: color-mix(in srgb, var(--accent, #43E1FD) 50%, transparent); box-shadow: 0 0 34px color-mix(in srgb, var(--accent, #43E1FD) 16%, transparent); transform: translateY(-3px);">
+          <div style="padding: 5px; border-radius: 50%; background: linear-gradient(135deg, var(--accent, #43E1FD), var(--accent-soft, #43E1FD));">
+            <image-slot id="dkt-speaker-1" style="width: 138px; height: 138px; display: block;" shape="circle" placeholder="Фото"></image-slot>
+          </div>
+          <div>
+            <div style="font-weight: 800; font-size: 22px;">Alexander Dovnar</div>
+            <div style="margin-top: 6px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--accent-soft, #43E1FD);">Head of DevOps</div>
+          </div>
+        </div>
+        <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09); border-radius: 22px; padding: 34px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 18px; transition: border-color .25s, box-shadow .25s, transform .25s;" style-hover="border-color: color-mix(in srgb, var(--accent, #43E1FD) 50%, transparent); box-shadow: 0 0 34px color-mix(in srgb, var(--accent, #43E1FD) 16%, transparent); transform: translateY(-3px);">
+          <div style="padding: 5px; border-radius: 50%; background: linear-gradient(135deg, #FED74E, #E85872);">
+            <div style="width: 138px; height: 138px; border-radius: 50%; background: rgba(8,48,71,0.6); display: flex; align-items: center; justify-content: center;">
+              <svg viewBox="0 0 24 24" width="74" height="74" fill="none" stroke="#BCDAEC" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"></path></svg>
+            </div>
+          </div>
+          <div>
+            <div style="font-weight: 800; font-size: 22px;">Загадочный гость</div>
+            <div style="margin-top: 6px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #90B9D0;">Всем известный специально приглашённый гость :)</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 36px; display: flex; flex-direction: column; align-items: center; gap: 12px;">
+        <p style="margin: 0; font-size: 16px; color: #BCDAEC;">Есть чем поделиться с комьюнити?</p>
+        <a href="https://t.me/DevOpsKitchenTalks" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 11px; background: #E85872; color: #fff; font-weight: 800; font-size: 18px; padding: 15px 34px; border-radius: 999px; text-decoration: none; box-shadow: 0 12px 32px rgba(232,88,114,0.3); transition: transform .15s, box-shadow .25s, filter .15s;" style-hover="transform: translateY(-2px); box-shadow: 0 18px 44px rgba(232,88,114,0.45); filter: brightness(1.05);">Стать спикером <span style="font-size: 20px;">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROGRAM ============ -->
+  <section id="program" style="padding: 80px 0; border-top: 1px solid rgba(255,255,255,0.06);">
+    <div style="max-width: 1180px; margin: 0 auto; padding: 0 32px;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-soft, #43E1FD); text-align: center;">Программа</div>
+      <h2 style="margin: 12px 0 0; font-weight: 800; font-size: clamp(32px, 4.4vw, 48px); letter-spacing: -0.02em; text-align: center;">Меню на день</h2>
+      <p style="margin: 12px auto 0; max-width: 600px; font-size: 18px; line-height: 1.5; color: #BCDAEC; text-align: center;">Четыре доклада, панельная дискуссия и много нетворкинга. Названия докладов добавим, как только шефы определятся с блюдами.</p>
+
+      <div style="max-width: 680px; margin: 36px auto 0; display: flex; flex-direction: column; gap: 10px;">
+
+        <div style="display: flex; align-items: center; gap: 20px; padding: 16px 22px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 14px;">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 15px; color: #90B9D0; min-width: 116px;">12:00 – 12:30</span>
+          <span style="font-size: 18px; color: #DCEFFA;">Регистрация и welcome coffee</span>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 20px; padding: 18px 22px; background: color-mix(in srgb, var(--accent, #43E1FD) 6%, transparent); border: 1px solid color-mix(in srgb, var(--accent, #43E1FD) 22%, transparent); border-radius: 14px; transition: border-color .2s, background .2s;" style-hover="border-color: color-mix(in srgb, var(--accent, #43E1FD) 50%, transparent); background: color-mix(in srgb, var(--accent, #43E1FD) 10%, transparent);">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 15px; color: var(--accent-soft, #43E1FD); min-width: 116px;">12:35 – 13:15</span>
+          <span style="font-size: 18px; font-weight: 700; color: #EAF6FF;">Доклад 1</span>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 20px; padding: 18px 22px; background: color-mix(in srgb, var(--accent, #43E1FD) 6%, transparent); border: 1px solid color-mix(in srgb, var(--accent, #43E1FD) 22%, transparent); border-radius: 14px; transition: border-color .2s, background .2s;" style-hover="border-color: color-mix(in srgb, var(--accent, #43E1FD) 50%, transparent); background: color-mix(in srgb, var(--accent, #43E1FD) 10%, transparent);">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 15px; color: var(--accent-soft, #43E1FD); min-width: 116px;">13:20 – 14:05</span>
+          <span style="font-size: 18px; font-weight: 700; color: #EAF6FF;">Доклад 2</span>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 20px; padding: 14px 22px;">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 15px; color: #6f97b0; min-width: 116px;">14:05 – 14:35</span>
+          <span style="font-size: 17px; color: #FCEBA0;">☕ Coffee break</span>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 20px; padding: 18px 22px; background: color-mix(in srgb, var(--accent, #43E1FD) 6%, transparent); border: 1px solid color-mix(in srgb, var(--accent, #43E1FD) 22%, transparent); border-radius: 14px; transition: border-color .2s, background .2s;" style-hover="border-color: color-mix(in srgb, var(--accent, #43E1FD) 50%, transparent); background: color-mix(in srgb, var(--accent, #43E1FD) 10%, transparent);">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 15px; color: var(--accent-soft, #43E1FD); min-width: 116px;">14:35 – 15:20</span>
+          <span style="font-size: 18px; font-weight: 700; color: #EAF6FF;">Доклад 3</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 20px; padding: 18px 22px; background: color-mix(in srgb, var(--accent, #43E1FD) 6%, transparent); border: 1px solid color-mix(in srgb, var(--accent, #43E1FD) 22%, transparent); border-radius: 14px; transition: border-color .2s, background .2s;" style-hover="border-color: color-mix(in srgb, var(--accent, #43E1FD) 50%, transparent); background: color-mix(in srgb, var(--accent, #43E1FD) 10%, transparent);">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 15px; color: var(--accent-soft, #43E1FD); min-width: 116px;">15:25 – 16:10</span>
+          <span style="font-size: 18px; font-weight: 700; color: #EAF6FF;">Доклад 4</span>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 20px; padding: 14px 22px;">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 15px; color: #FEEB35; min-width: 116px;">16:15 – 17:30</span>
+          <span style="font-size: 18px; font-weight: 700; color: #EAF6FF;">Панельная дискуссия</span>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 20px; padding: 16px 22px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 14px;">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 15px; color: #90B9D0; min-width: 116px;">17:20 – 18:00</span>
+          <span style="font-size: 18px; color: #DCEFFA;">Итоги и финальный нетворкинг</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PARTNERS ============ -->
+  <section id="partners" style="padding: 80px 0; border-top: 1px solid rgba(255,255,255,0.06);">
+    <div style="max-width: 1180px; margin: 0 auto; padding: 0 32px;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-soft, #43E1FD); text-align: center;">Партнёры</div>
+      <h2 style="margin: 12px 0 0; font-weight: 800; font-size: clamp(32px, 4.4vw, 48px); letter-spacing: -0.02em; text-align: center;">Нас поддерживают</h2>
+      <p style="margin: 12px auto 0; max-width: 560px; font-size: 18px; line-height: 1.5; color: #BCDAEC; text-align: center;">Те, кто помогает накрыть стол и собрать комьюнити за одним столом.</p>
+
+      <div style="margin: 38px auto 0; max-width: 600px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 24px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09); border-radius: 22px; padding: 36px; transition: border-color .25s, box-shadow .25s;" style-hover="border-color: color-mix(in srgb, var(--accent, #43E1FD) 50%, transparent); box-shadow: 0 0 34px color-mix(in srgb, var(--accent, #43E1FD) 16%, transparent);">
+        <a href="https://slurm.io/" target="_blank" rel="noopener" aria-label="Слёрм" style="display: flex; align-items: center; justify-content: center; width: 100%; height: 150px; background: linear-gradient(135deg, color-mix(in srgb, var(--accent, #43E1FD) 12%, transparent), rgba(11,84,125,0.32)); border: 1px solid color-mix(in srgb, var(--accent, #43E1FD) 20%, transparent); border-radius: 16px; padding: 30px; text-decoration: none; transition: transform .2s, border-color .2s;" style-hover="transform: translateY(-2px); border-color: color-mix(in srgb, var(--accent, #43E1FD) 45%, transparent);">
+          <img src="assets/slurm-logo-white.svg" alt="Слёрм" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+        </a>
+        <div>
+          <span style="display: inline-flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; padding: 6px 12px; border-radius: 999px; background: rgba(254,235,53,0.12); border: 1px solid rgba(254,235,53,0.35); color: #FCEBA0;">Генеральный партнёр</span>
+          <div style="margin-top: 14px; font-weight: 800; font-size: 26px;">Слёрм</div>
+          <p style="margin: 8px auto 0; max-width: 460px; font-size: 17px; line-height: 1.55; color: #BCDAEC; text-wrap: pretty;">Учебный центр для инженеров и разработчиков: 55+ онлайн-курсов по Kubernetes, DevOps, SRE и облачной архитектуре. От базы до senior — с практикой на реальных стендах.</p>
+          <a href="https://slurm.io/" target="_blank" rel="noopener" style="margin-top: 14px; display: inline-flex; align-items: center; gap: 7px; color: var(--accent-soft, #43E1FD); font-weight: 700; font-size: 16px; text-decoration: none; transition: gap .15s;" style-hover="gap: 12px;">slurm.io <span>→</span></a>
+        </div>
+      </div>
+
+      <div style="margin-top: 26px; text-align: center;">
+        <a href="https://t.me/DevOpsKitchenTalks" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 9px; color: var(--accent-soft, #43E1FD); font-weight: 700; font-size: 17px; text-decoration: none; transition: color .15s;" style-hover="color: var(--accent-soft, #43E1FD);">Стать партнёром</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer style="border-top: 1px solid color-mix(in srgb, var(--accent, #43E1FD) 16%, transparent); background: rgba(5,40,60,0.6); padding: 56px 0 40px;">
+    <div style="max-width: 1180px; margin: 0 auto; padding: 0 32px; display: flex; flex-direction: column; align-items: center; gap: 22px; text-align: center;">
+      <img src="assets/dkt-logo.png" alt="DevOps Kitchen Talks" style="width: 76px; height: 76px; object-fit: contain;">
+      <div>
+        <div style="font-weight: 800; font-size: 22px;">DKT Conference</div>
+        <div style="margin-top: 6px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #90B9D0;">15 августа 2026 · оффлайн + онлайн</div>
+      </div>
+
+      <div style="display: flex; gap: 14px;">
+        <a href="https://t.me/DevOpsKitchenTalks" target="_blank" rel="noopener" aria-label="Telegram" style="width: 52px; height: 52px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); color: #EAF6FF; text-decoration: none; transition: all .2s;" style-hover="background: var(--accent, #43E1FD); color: #08304a; border-color: var(--accent-soft, #43E1FD); transform: translateY(-3px);">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M21.94 4.6 18.9 19.2c-.23 1.05-.85 1.3-1.72.81l-4.78-3.52-2.3 2.22c-.26.26-.47.47-.96.47l.34-4.86 8.86-8c.39-.34-.08-.53-.6-.19l-10.95 6.9-4.72-1.47c-1.03-.32-1.05-1.03.21-1.52l18.45-7.11c.86-.32 1.6.2 1.41 1.27z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@DevOpsKitchenTalks" target="_blank" rel="noopener" aria-label="YouTube" style="width: 52px; height: 52px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); color: #EAF6FF; text-decoration: none; transition: all .2s;" style-hover="background: #E85872; color: #fff; border-color: #E85872; transform: translateY(-3px);">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.12-2.12C19.5 3.56 12 3.56 12 3.56s-7.5 0-9.38.52A3 3 0 0 0 .5 6.2 31.4 31.4 0 0 0 0 12a31.4 31.4 0 0 0 .5 5.8 3 3 0 0 0 2.12 2.12c1.88.52 9.38.52 9.38.52s7.5 0 9.38-.52a3 3 0 0 0 2.12-2.12A31.4 31.4 0 0 0 24 12a31.4 31.4 0 0 0-.5-5.8zM9.6 15.6V8.4l6.25 3.6z"/></svg>
+        </a>
+        <a href="https://instagram.com/devopskitchentalks" target="_blank" rel="noopener" aria-label="Instagram" style="width: 52px; height: 52px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); color: #EAF6FF; text-decoration: none; transition: all .2s;" style-hover="background: #FEEB35; color: #08304a; border-color: #FEEB35; transform: translateY(-3px);">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.2" fill="currentColor" stroke="none"/></svg>
+        </a>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 18px; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 13px;">
+        <span style="color: #6f97b0;">Слушать подкаст:</span>
+        <a href="https://podcasts.apple.com/by/podcast/the-devops-kitchen-talkss-podcast" target="_blank" rel="noopener" style="color: #B9D9EC; text-decoration: none; transition: color .15s;" style-hover="color: var(--accent-soft, #43E1FD);">Apple Podcasts</a>
+        <a href="https://music.yandex.ru/album/10151746" target="_blank" rel="noopener" style="color: #B9D9EC; text-decoration: none; transition: color .15s;" style-hover="color: var(--accent-soft, #43E1FD);">Яндекс Музыка</a>
+        <a href="https://podcasts.google.com/feed/aHR0cHM6Ly9mZWVkLnBvZGJlYW4uY29tL2Rldm9wc2tpdGNoZW50YWxrcy9mZWVkLnhtbA" target="_blank" rel="noopener" style="color: #B9D9EC; text-decoration: none; transition: color .15s;" style-hover="color: var(--accent-soft, #43E1FD);">Google Podcasts</a>
+      </div>
+
+      <div style="margin-top: 8px; font-size: 13px; color: #5f86a0;">© 2026 DevOps Kitchen Talks · сделано с теплом для комьюнити</div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;heroVariant&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;По центру&quot;, &quot;options&quot;: [&quot;По центру&quot;, &quot;В две колонки&quot;], &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Hero&quot; },
+  &quot;accentColor&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;Бирюзовый&quot;, &quot;options&quot;: [&quot;Бирюзовый&quot;, &quot;Малиновый&quot;, &quot;Жёлтый&quot;], &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Тема&quot; },
+  &quot;playfulBg&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Hero&quot; }
+}">
+class Component extends DCLogic {
+  state = { now: Date.now() };
+
+  setRoot = (el) => { this.root = el; this.applyAccent(); };
+  applyAccent() {
+    if (!this.root) return;
+    const v = this.props.accentColor ?? 'Бирюзовый';
+    const map = {
+      'Бирюзовый': { accent: '#43E1FD', soft: '#43E1FD' },
+      'Малиновый': { accent: '#E85872', soft: '#F58FA3' },
+      'Жёлтый':   { accent: '#FED74E', soft: '#FED74E' },
+    };
+    const t = map[v] || map['Бирюзовый'];
+    this.root.style.setProperty('--accent', t.accent);
+    this.root.style.setProperty('--accent-soft', t.soft);
+  }
+
+  componentDidMount() {
+    this.timer = setInterval(() => this.setState({ now: Date.now() }), 1000);
+    this.applyAccent();
+  }
+  componentDidUpdate() { this.applyAccent(); }
+  componentWillUnmount() {
+    if (this.timer) clearInterval(this.timer);
+  }
+
+  renderVals() {
+    const target = new Date('2026-08-15T13:00:00+03:00').getTime();
+    let diff = Math.max(0, target - this.state.now);
+    const day = 86400000, hr = 3600000, min = 60000;
+    const d = Math.floor(diff / day); diff -= d * day;
+    const h = Math.floor(diff / hr); diff -= h * hr;
+    const m = Math.floor(diff / min); diff -= m * min;
+    const s = Math.floor(diff / 1000);
+    const pad = (n) => String(n).padStart(2, '0');
+
+    const variant = this.props.heroVariant ?? 'По центру';
+
+    return {
+      days: String(d),
+      hours: pad(h),
+      mins: pad(m),
+      secs: pad(s),
+      isCenter: variant === 'По центру',
+      isSplit: variant === 'В две колонки',
+      playfulBg: this.props.playfulBg ?? true,
+      setRoot: this.setRoot,
+    };
+  }
+}
+</script>
+</body>
+</html>
