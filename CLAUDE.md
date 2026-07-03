@@ -68,4 +68,4 @@ python3 -m http.server 8765 --bind 127.0.0.1 &
 
 Push to `main` → GitHub Pages auto-deploys (classic branch-deploy). Never push a
 `main` without the `CNAME` file (it would unset the custom domain). Design system:
-`DESIGN.md`. Full deploy history/spec: `docs/superpowers/`.
+`DESIGN.md`.

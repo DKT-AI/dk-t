@@ -1,3 +1,20 @@
+# macOS / OS noise
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+
+# Editor / IDE
+.idea/
+.vscode/
+*.swp
+*~
+
+# Playwright MCP render-check artifacts
 .playwright-mcp/
 *.screenshot.png
 dkt-render-test.png
+
+# Internal planning docs — kept locally, not published (see ../dk-t-planning-docs/)
+docs/
