@@ -11,6 +11,9 @@ Thumbs.db
 *.swp
 *~
 
+# Brainstorming visual-companion mockups (local only)
+.superpowers/
+
 # Playwright MCP render-check artifacts
 .playwright-mcp/
 *.screenshot.png
